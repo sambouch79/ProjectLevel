@@ -46,22 +46,37 @@ router.get('/actors/:id',async(req,res)=>{
 })
 //mettre à jour un acteur via son id
 router.patch('/actors/:id',async(req,res)=>{
-    const updateFields=Object.keys(req.body)
-    const allowedFields=['firstName','lastName','birthdate']
-
+    const actor=req.body
+    const updateFields=Object.keys(actor)
+    const allowedFields=['firstName','lastName','birthdate','movieActor']
+    const newMovies = actor.movieActor || [];
     const IsValideOp=updateFields.every((update)=> allowedFields.includes(update))
 
     if(! IsValideOp){
     return res.status(400).send({Error:'invalid update!!!'})
     }
     try {
-        const actor=await Actor.findById(req.params.id)
+        const oldActor=await Actor.findById(req.params.id)
         if(!actor){
             res.status(404).send({Error:"not found"})
         }
-        updateFields.forEach((update)=>actor[update]=req.body[update])
-        await actor.save()
-        res.status(200).send(actor)
+        const oldMovies=oldActor.movieActor;
+         
+         Object.assign(oldActor, actor);
+      
+        const newActor= await oldActor.save();
+        
+        
+        const added = difference(newMovies, oldMovies); 
+        const removed = difference(oldMovies, newMovies);
+
+          //sauvegarde des nouveaux movies
+          await Movie.updateMany({ '_id': added }, { $addToSet: { actors: newMovie._id } });
+        
+          //suppression des movies supprimes
+          await Movie.updateMany({ '_id': removed }, { $pull: { actors: newMovie._id } });
+        
+        res.status(200).send(newActor)
     } catch (error) {
         res.status(400).send({Error:"not found"})
     }
@@ -71,6 +86,10 @@ router.patch('/actors/:id',async(req,res)=>{
 router.delete('/actors/:id',async(req,res)=>{
     try {
         const actor=await Actor.findByIdAndDelete(req.params.id)
+        if(!actor){
+            return res.status(400).send({error:'Not found'})
+        }
+        await Movie.updateMany({ '_id': actor.movieActor }, { $pull: { actors: actor._id } });
         res.status(200).send(actor)
     } catch (error) {
         res.status(400).send(error)

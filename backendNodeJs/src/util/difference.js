@@ -1,3 +1,6 @@
+
+
+//rerourner la liste des elements A qui ne sont pas dans B
 function difference(A, B) {
     const arrA = Array.isArray(A) ? A.map(x => x.toString()) : [A.toString()];
     const arrB = Array.isArray(B) ? B.map(x => x.toString()) : [B.toString()];
@@ -11,4 +14,5 @@ function difference(A, B) {
   
     return result;
   }
+
   module.exports=difference

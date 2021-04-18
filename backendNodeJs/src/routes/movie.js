@@ -15,13 +15,12 @@ router.post('/movies',auth,async(req,res)=>{
         
     })
     try {
-            movie.actors.push(req.body.actor)
-           
-            const actor=await Actor.findById(req.body.actor)
-            //actor.movieActor.push(movie._id)
+            
+             const movie=await movie.save()
+          
             await Actor.updateMany({ '_id': movie.actors }, { $push: { movieActor: movie._id } });
             
-            await movie.save()
+           
         res.status(201).send(movie)
     } catch (error) {
         res.status(400).send(error)
@@ -74,11 +73,13 @@ router.get('/movies',auth,async(req,res)=>{
 router.patch('/movies/:id',auth,async(req,res)=>{
     const movie=req.body
     const updateFields=Object.keys(movie)
+    //liste des proprietes que l'on peut modifier
     const allowedFields=['title','year','category','actors']
    
     const newActors = movie.actors || [];
-    const IsValideOp=updateFields.every((update)=> allowedFields.includes(update))
     
+    //--controler les proprietes a modifier
+    const IsValideOp=updateFields.every((update)=> allowedFields.includes(update))
     if(! IsValideOp){
         return res.status(400).send({Error:'invalid updates!!!'})
     }
@@ -96,12 +97,17 @@ router.patch('/movies/:id',auth,async(req,res)=>{
          
          const newMovie = await oldMovie.save();
         //console.log(newMovie)
-        const added = difference(newActors, oldActors);
-        const removed = difference(oldActors, newActors);
         
+        const added = difference(newActors, oldActors); // retourne les id  actor de newActor qui ne sont pas dans oldActors 
+        const removed = difference(oldActors, newActors); // retourne les id  actor de oldActor qui ne sont pas dans newActors
+        
+        //---sauvegarde des nouveaux actors-----
         await Actor.updateMany({ '_id': added }, { $addToSet: { movieActor: newMovie._id } });
+        
+        //--suppression des actors supprimes-----
         await Actor.updateMany({ '_id': removed }, { $pull: { movieActor: newMovie._id } });
         //console.log(newMovie)
+        
         res.send(newMovie)
      } catch (error) {
          res.status(400).send(error)
