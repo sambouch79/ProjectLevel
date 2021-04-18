@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularFronted';
-  Icon: string = "../../images/movie.png"
+  Icon: string = "../../images/movie.png";
+
 }

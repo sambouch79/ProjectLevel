@@ -7,7 +7,7 @@ const difference=require('../util/difference')
 require('../dataBase/db')
 const router=new express.Router()
 
-//crear un movie 
+//creer un movie 
 router.post('/movies',auth,async(req,res)=>{
     const movie=new Movie({
         ...req.body,
@@ -16,12 +16,12 @@ router.post('/movies',auth,async(req,res)=>{
     })
     try {
             
-             const movie=await movie.save()
+             const savedMovie=await movie.save()
           
-            await Actor.updateMany({ '_id': movie.actors }, { $push: { movieActor: movie._id } });
+            await Actor.updateMany({ _id: movie.actors }, { $push: { movieActor: savedMovie._id } });
             
            
-        res.status(201).send(movie)
+        res.status(201).send(savedMovie)
     } catch (error) {
         res.status(400).send(error)
     }
@@ -102,10 +102,10 @@ router.patch('/movies/:id',auth,async(req,res)=>{
         const removed = difference(oldActors, newActors); // retourne les id  actor de oldActor qui ne sont pas dans newActors
         
         //---sauvegarde des nouveaux actors-----
-        await Actor.updateMany({ '_id': added }, { $addToSet: { movieActor: newMovie._id } });
+        await Actor.updateMany({ _id: added }, { $addToSet: { movieActor: newMovie._id } });
         
         //--suppression des actors supprimes-----
-        await Actor.updateMany({ '_id': removed }, { $pull: { movieActor: newMovie._id } });
+        await Actor.updateMany({ _id: removed }, { $pull: { movieActor: newMovie._id } });
         //console.log(newMovie)
         
         res.send(newMovie)

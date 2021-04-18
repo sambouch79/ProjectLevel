@@ -1,5 +1,6 @@
 const express=require('express')
 const Actor=require('../models/actor')
+const Movie = require('../models/movie')
 require('../dataBase/db')
 const router=new express.Router()
 
@@ -71,10 +72,10 @@ router.patch('/actors/:id',async(req,res)=>{
         const removed = difference(oldMovies, newMovies);
 
           //sauvegarde des nouveaux movies
-          await Movie.updateMany({ '_id': added }, { $addToSet: { actors: newMovie._id } });
+          await Movie.updateMany({ _id: added }, { $addToSet: { actors: newMovie._id } });
         
           //suppression des movies supprimes
-          await Movie.updateMany({ '_id': removed }, { $pull: { actors: newMovie._id } });
+          await Movie.updateMany({ _id: removed }, { $pull: { actors: newMovie._id } });
         
         res.status(200).send(newActor)
     } catch (error) {
@@ -85,11 +86,19 @@ router.patch('/actors/:id',async(req,res)=>{
 //effacer un acteur via son id
 router.delete('/actors/:id',async(req,res)=>{
     try {
-        const actor=await Actor.findByIdAndDelete(req.params.id)
+        const actor=await Actor.findById(req.params.id)
         if(!actor){
             return res.status(400).send({error:'Not found'})
         }
-        await Movie.updateMany({ '_id': actor.movieActor }, { $pull: { actors: actor._id } });
+        console.log(actor)
+        await actor.remove()
+        console.log(actor.movieActor)
+        if(actor.movieActor===[]){
+            console.log(true)
+            return res.status(200).send({message:'actor have not movie'})
+        }
+        await Movie.updateMany({ _id: actor.movieActor }, { $pull: { actors: actor._id } });
+        
         res.status(200).send(actor)
     } catch (error) {
         res.status(400).send(error)

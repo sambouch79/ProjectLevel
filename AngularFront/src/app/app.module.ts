@@ -9,12 +9,18 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RouterModule, Routes } from '@angular/router';
+import { EditComponent } from './edit/edit.component';
+import { FormsModule } from '@angular/forms';
+import { movieService } from './services/movie.service';
+import { DetailsMovieComponent } from './details-movie/details-movie.component';
 
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'about', component: AboutUsComponent }
+  { path: 'about', component: AboutUsComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'details/:id', component: DetailsMovieComponent }
 ]
 
 @NgModule({
@@ -26,14 +32,17 @@ export const ROUTES: Routes = [
     HomeComponent,
     ContactComponent,
     AboutUsComponent,
+    EditComponent,
+    DetailsMovieComponent,
 
 
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    FormsModule
   ],
-  providers: [],
+  providers: [movieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
