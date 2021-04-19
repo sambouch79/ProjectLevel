@@ -2,22 +2,27 @@
 <h1>Edit movie</h1>
 </div>
 <div class=" container m-2">
-    <form>
+ <!-- {{movie | json}} --> 
+    <form  >
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" aria-describedby=" movie title">
+          <input type="text" class="form-control" id="title" aria-describedby=" movie title"
+           name="title" [(ngModel)]="movie.title" required >
           
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea type="text" class="form-control" id="description" aria-describedby=" movie descriptio"></textarea>
+          <textarea type="text" class="form-control" id="description" aria-describedby=" movie descriptio"
+          name="description" [(ngModel)]="movie.description" required></textarea>
         </div>
         <div class="mb-3">
             <label for="formFile" class="form-label">Image file</label>
-            <input class="form-control form-control-sm" id="formFile" type="file">
+            <input class="form-control form-control-sm" id="formFile" type="text"
+            name="image" [(ngModel)]="movie.image">
           </div>
         <div class="mb-3 text-center">
-        <button type="submit" class="btn btn-primary ">Submit</button>
+        <button  type="submit" class="btn btn-primary "
+        (click)="onSubmit()">Edit movie</button>
         </div>
       </form>
 </div>

@@ -2,10 +2,12 @@
     <main>
 
         <section class=" text-center container">
-          <div class="row ">
+          <div class="row m-2 ">
             <div class="col-lg-6 col-md-8 mx-auto">
               <h1>Movies List</h1>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat debitis eveniet itaque recusandae modi omnis laborum dolores neque. Quae sapiente fuga doloribus praesentium repudiandae. Tenetur, nobis iste? Nam, totam libero.</p>
+   
+              <button type="button" class="btn btn-outline-secondary  btn-block"  routerLink= "addMovie">Add Movie</button>
             </div>
           </div>
         </section>
@@ -24,8 +26,8 @@
                       <div class="btn-group ">
                         <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onView(i)">View</button>
                        
-                        <button type="button" class="btn btn-sm btn-outline-secondary" routerLink= "edit">Edit </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onChange(i)">Edit </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onRemove(i)">Delete</button>
                       </div>
                      
                     </div>

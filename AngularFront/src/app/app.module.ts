@@ -13,14 +13,19 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { movieService } from './services/movie.service';
 import { DetailsMovieComponent } from './details-movie/details-movie.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
 
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutUsComponent },
-  { path: 'edit', component: EditComponent },
-  { path: 'details/:id', component: DetailsMovieComponent }
+  { path: 'edit/:id', component: EditComponent },
+  { path: 'details/:id', component: DetailsMovieComponent },
+  { path: 'notFound', component: NotFoundComponent },
+  { path: 'addMovie', component: AddMovieComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'notFound' }
 ]
 
 @NgModule({
@@ -34,6 +39,8 @@ export const ROUTES: Routes = [
     AboutUsComponent,
     EditComponent,
     DetailsMovieComponent,
+    NotFoundComponent,
+    AddMovieComponent,
 
 
   ],

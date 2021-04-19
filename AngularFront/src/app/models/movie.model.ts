@@ -1,5 +1,5 @@
 export class movie {
     title: string;
     description: string;
-    image = "https://picsum.photos/150";
+    image: string = "https://picsum.photos/150";
 }
