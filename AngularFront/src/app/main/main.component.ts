@@ -31,6 +31,11 @@ export class MainComponent implements OnInit, OnDestroy {
   onChange(id: number) {
     this.router.navigate(["edit", id])
   }
+  onRemove(id: number) {
+
+    this.movieService.removeMovie(id)
+    this.router.navigate([""])
+  }
   ngOnDestroy() {
     this.movieSubscribe.unsubscribe()
   }

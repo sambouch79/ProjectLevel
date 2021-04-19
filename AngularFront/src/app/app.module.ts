@@ -15,6 +15,7 @@ import { movieService } from './services/movie.service';
 import { DetailsMovieComponent } from './details-movie/details-movie.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 export const ROUTES: Routes = [
@@ -25,6 +26,7 @@ export const ROUTES: Routes = [
   { path: 'details/:id', component: DetailsMovieComponent },
   { path: 'notFound', component: NotFoundComponent },
   { path: 'addMovie', component: AddMovieComponent },
+  { path: 'signin', component: SigninComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'notFound' }
 ]
 
@@ -41,6 +43,7 @@ export const ROUTES: Routes = [
     DetailsMovieComponent,
     NotFoundComponent,
     AddMovieComponent,
+    SigninComponent,
 
 
   ],
