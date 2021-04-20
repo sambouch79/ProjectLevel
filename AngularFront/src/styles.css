@@ -6,4 +6,7 @@ html,body{
 body{
     height: 100%;
     position: relative;
+    background-color: #EEF0F1  ;
+    font-family: 'Raleway', sans-serif;
+    
 }

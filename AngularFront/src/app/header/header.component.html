@@ -7,17 +7,20 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link link-secondary px-4 active" routerLink="" aria-current="page" href="#">Home</a>
+          <a class="nav-link lk link-secondary px-4 active" routerLink="" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-secondary px-4" routerLink="/contact" href="#">Contact</a>
+          <a class="nav-link lk link-secondary px-4" routerLink="/contact" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-secondary px-4" routerLink="/about" href="#" >About Us</a>
+          <a class="nav-link lk link-secondary px-4" routerLink="/about" href="#" >About Us</a>
         </li>
       </ul>
       <div class="d-flex">
-        <button class="btn btn-secondary" type="submit" routerLink="/signin">SignIn</button>
+        <a class="nav-link lk link-secondary" *ngIf="!authService.loggedIn()" routerLink="/signup">Register</a>
+        <a class="nav-link lk link-secondary" *ngIf="!authService.loggedIn()"  routerLink="/signin">Login</a>
+        <a class="nav-link lk link-secondary" style="cursor:pointer" 
+        *ngIf="authService.loggedIn()" (click)="authService.logout()" >Logout</a>
       </div>
     </div>
   </div>

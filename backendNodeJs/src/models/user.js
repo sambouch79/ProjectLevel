@@ -42,7 +42,7 @@ const userSchema=new mongoose.Schema({
     foreignField:'owner'
 }) 
 
-/* userSchema.methods.toJSON= function(){
+userSchema.methods.toJSON= function(){
     const user=this
     const userObject=user.toObject()
 
@@ -50,7 +50,7 @@ const userSchema=new mongoose.Schema({
     delete userObject.tokens
     
     return userObject
-} */
+} 
 //methode pour generer le token
 userSchema.methods.generateAuthToken= async function(){
     const user=this

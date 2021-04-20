@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -10,12 +10,14 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditComponent } from './edit/edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { movieService } from './services/movie.service';
 import { DetailsMovieComponent } from './details-movie/details-movie.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { authService } from './services/auth.service';
 
 
 export const ROUTES: Routes = [
@@ -27,6 +29,7 @@ export const ROUTES: Routes = [
   { path: 'notFound', component: NotFoundComponent },
   { path: 'addMovie', component: AddMovieComponent },
   { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'notFound' }
 ]
 
@@ -44,15 +47,19 @@ export const ROUTES: Routes = [
     NotFoundComponent,
     AddMovieComponent,
     SigninComponent,
+    SignupComponent,
 
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [movieService],
+  providers: [movieService, authService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 //import { emit } from "node:process";
 import { Subject } from "rxjs";
 import { movie } from "../models/movie.model"
-const url = "http://localhost:3000/"
+
 @Injectable({
     providedIn: 'root'
 })

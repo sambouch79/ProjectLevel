@@ -1,18 +1,22 @@
-<div class="container contact  py-5">
-    <form>
-       
+<div class="container sign  py-5">
+  <div class="">
+    <h1 class="text-center"><b>Sign In</b></h1>
+    <form  [formGroup]="signinForm">
         <div class="row">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail" required>
+        <label for="inputEmail" class="form-label"><b>Email</b></label>
+        <input type="email" class="form-control" formControlName="email" id="inputEmail" required>
         </div>
         <div class="row">
-        <label for="inputPassword" class="form-label">Password</label>
-        <input class="form-control" type="password" placeholder="" id="inputPassword" required>
+        <label for="inputPassword" class="form-label"><b>Password</b></label>
+        <input class="form-control" type="password" placeholder="" id="inputPassword"formControlName="password" required>
         </div>
         <div class="row py-5">
-        <button class="btn btn-primary " type="submit">SignIn</button>
+        <button class="btn btn-primary " type="submit" [disabled]="signinForm.invalid"
+        (click)="onSubmitLogin()">Login</button>
       </div>
     </form>
+
+  </div>
 </div>
 
 
