@@ -76,7 +76,7 @@ export class movieService {
     }
     removeMovie(index: number) {
 
-        this.movies.splice(index, index + 1)
+        this.movies.splice(index, 1)
         this.emitMovies()
     }
     getMovie(index: number) {
