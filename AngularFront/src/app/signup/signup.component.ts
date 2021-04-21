@@ -31,16 +31,6 @@ export class SignupComponent implements OnInit {
 
 
     this.authService.register(email, password)
-      .then((res) => {
-        //console.log(res.status)
-        if (res.status === 201) {
-          console.log(res.token)
-          localStorage.setItem('token', res.token);
-          this.router.navigate([''])
-          console.log(res.token)
-        } else {
-          console.log(res.error)
-        }
-      })
+
   }
 }

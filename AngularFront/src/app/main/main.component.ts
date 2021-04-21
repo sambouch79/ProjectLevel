@@ -20,7 +20,7 @@ export class MainComponent implements OnInit, OnDestroy {
     }, (error) => {
       console.log(error)
     }, () => {
-      console.log("observable completed")
+      console.log("completed")
     }
     )
     this.movieService.emitMovies()
