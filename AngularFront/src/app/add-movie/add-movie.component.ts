@@ -17,5 +17,6 @@ export class AddMovieComponent implements OnInit {
   onSubmit(): void {
     this.movieService.addMovie(this.movie)
     this.router.navigate([""])
+
   }
 }

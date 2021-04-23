@@ -32,7 +32,7 @@ router.get('/movies/:id',auth,async(req,res)=>{
     try {
         const movie=await Movie.findOne({_id,owner:req.user._id})
         await movie.populate('category').execPopulate()
-        await movie.populate('actors').execPopulate()
+       
         if(!movie){
             return res.status(404).send(error)
         }
@@ -65,7 +65,7 @@ router.get('/movies',auth,async(req,res)=>{
         
         res.status(200).send(req.user.movies)
     } catch (error) {
-        res.status(500).send(err)  
+        res.status(500).send(error)  
     }
 
 })

@@ -23,13 +23,10 @@ export class EditComponent implements OnInit {
     this.movie = this.movieService.getMovie(id)
 
   }
+  //sauvegarder les modifications apportees au film
   onSubmit(): void {
     this.movieService.saveMovie()
-
     this.router.navigate([""])
   }
-  /*  onSubmit(): void {
-     this.movieService.addMovie(this.movie)
-     this.router.navigate([""])
-   } */
+
 }

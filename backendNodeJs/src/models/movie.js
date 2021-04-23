@@ -17,6 +17,7 @@ const movieSchema= new mongoose.Schema({
         max: 2200 
         
     },
+   
     category:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Category'

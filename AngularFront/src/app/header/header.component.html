@@ -1,4 +1,65 @@
-<nav class="navbar navbar-expand-md">
+<div id="wrapper">
+  <div class="overlay"></div>
+   
+       <!-- Sidebar -->
+   <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <a href="#">Level Up</a></div></div>
+      <li><a href="#home" routerLink="">Home</a></li>
+      <li><a href="#about" routerLink="/about">About</a></li>
+      <li><a href="#contact" routerLink="/contact">Contact</a></li>
+      <li><a href="#Help" routerLink="/help">Help</a></li>
+      <li class="dropdown">
+      <a href="#medias" class="dropdown-toggle"  data-toggle="dropdown">Medias <span class="caret"></span></a>
+    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+     <div class="dropdown-header">Dropdown</div>
+     <li><a href="#movies">Movies</a></li>
+     <li><a href="#videos">Videos</a></li>
+     <li><a href="#Series">Series</a></li>
+     <li><a href="#cartoons">Cartoons</a></li>
+     <li><a href="#awards">Awards</a></li>
+     
+     </ul>
+     </li>
+     <li><a href="#register" routerLink="/signup" *ngIf="!authService.loggedIn()" >register</a></li>
+     <li><a href="#login" routerLink="signin" *ngIf="!authService.loggedIn()" >Login</a></li>
+     <li><a href="#logout" routerLink="/logout" *ngIf="authService.loggedIn()" (click)="authService.logout()">Logout</a></li>
+     </ul>
+ </nav>
+       <!-- /#sidebar-wrapper -->
+
+       <!-- Page Content -->
+       <div id="page-content-wrapper">
+           <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+               <span class="hamb-top"></span>
+         <span class="hamb-middle"></span>
+       <span class="hamb-bottom"></span>
+           </button>
+           <div class="container">
+               <div class="row">
+                   <div class="col-lg-8 col-lg-offset-2">
+                                      
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- /#page-content-wrapper -->
+
+   </div>
+   <!-- /#wrapper -->
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
     <b class="navbar-brand" href="#">Movies</b>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,6 +69,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
           <a class="nav-link lk link-secondary px-4 active" routerLink="" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lk link-secondary px-4" routerLink="/myMovies" href="#">My Movies</a>
         </li>
         <li class="nav-item">
           <a class="nav-link lk link-secondary px-4" routerLink="/contact" href="#">Contact</a>
@@ -30,4 +94,4 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> -->

@@ -1,0 +1,24 @@
+<div class="container contact  py-4">
+  <div class="">
+    <h1>My Movies </h1> 
+  </div>
+<div class="album py-4 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let movie of movies ,let i=index" >
+          <div  class="card ">
+            <img  [src]="image"/> 
+            <div class="card-body">
+              <h3 class="card-title"><b>{{movie.title}}</b></h3>
+              <p class="card-text">{{movie.category.name}}</p>
+              <h4>{{ movie.year}}</h4>
+             
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+     

@@ -18,6 +18,8 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { authService } from './services/auth.service';
+import { MyMoviesComponent } from './my-movies/my-movies.component';
+import { authGuard } from './services/auth-Gaurd.service';
 
 
 export const ROUTES: Routes = [
@@ -30,6 +32,7 @@ export const ROUTES: Routes = [
   { path: 'addMovie', component: AddMovieComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'myMovies', canActivate: [authGuard], component: MyMoviesComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'notFound' }
 ]
 
@@ -48,6 +51,7 @@ export const ROUTES: Routes = [
     AddMovieComponent,
     SigninComponent,
     SignupComponent,
+    MyMoviesComponent,
 
 
   ],
@@ -59,7 +63,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
 
   ],
-  providers: [movieService, authService],
+  providers: [movieService, authService, authGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
